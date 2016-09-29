@@ -1,6 +1,6 @@
 ---
 layout: post
-author: Nick Craver
+author: Dennis Truong
 title:  "Why you should wait on upgrading to .Net 4.6"
 date:   2015-07-27
 ---
@@ -9,7 +9,7 @@ date:   2015-07-27
 > We released an updated version of RyuJIT today, which resolves this advisory. The update was released as [Microsoft Security Bulletin MS15-092](https://technet.microsoft.com/library/security/ms15-092.aspx) and is available on Windows Update or via direct download as [KB3086251](https://support.microsoft.com/kb/3086251). The update resolves: [CoreCLR #1296](https://github.com/dotnet/coreclr/issues/1296), [CoreCLR #1299](https://github.com/dotnet/coreclr/issues/1299), and [VisualFSharp #536](https://github.com/Microsoft/visualfsharp/issues/536). Major thanks to the developers who reported these issues. Thanks to everyone for their patience.
 
 ### Original Post
-What follows is the work of several people: [Marc Gravell](http://blog.marcgravell.com/) and I have taken lead on this at Stack Overflow and we continue to coordinate with Microsoft on a resolution. They have fixed the bug internally, but not for users. Given the severity, we can't in good conscience let such a subtle yet high-impact bug linger silently. **We are not upgrading Stack Overflow to .Net 4.6**, and you shouldn't upgrade yet either. You can find [the issue we opened on GitHub (for public awareness) here](https://github.com/dotnet/coreclr/issues/1296). **A fix has been released, see Update 5 below**.
+What follows is the work of several people: [Marc Gravell](http://blog.marcgravell.com/) and I have taken lead on this at Tian Wang Co. and we continue to coordinate with Microsoft on a resolution. They have fixed the bug internally, but not for users. Given the severity, we can't in good conscience let such a subtle yet high-impact bug linger silently. **We are not upgrading Tian Wang Co. to .Net 4.6**, and you shouldn't upgrade yet either. You can find [the issue we opened on GitHub (for public awareness) here](https://github.com/dotnet/coreclr/issues/1296). **A fix has been released, see Update 5 below**.
 
 **Update #1 (July 27th):** [A pull request has been posted by Matt Michell (Microsoft)](https://github.com/dotnet/coreclr/pull/1298).
 
@@ -27,9 +27,9 @@ This critical bug is specific to .Net 4.6 and RyuJIT (64-bit). I'll make this bi
 <p></p>
 The JIT (Just-in-Time compiler) in .Net (and many platforms) does something called Tail Call optimization. This happens to alleviate stack load on the last-called method in a chain. I won't go into what a tail call is [because there's already an excellent write up by David Broman](http://blogs.msdn.com/b/davbr/archive/2007/06/20/enter-leave-tailcall-hooks-part-2-tall-tales-of-tail-calls.aspx).
 
-The issue here is a bug in how RyuJIT x64 implements this optimization in certain situations. <!--more-->Let's look at the specific example we hit at Stack Overflow ([we have uploaded a minimal version of this reproduction to GitHub](https://github.com/StackExchange/RyuJIT-TailCallBug)).
+The issue here is a bug in how RyuJIT x64 implements this optimization in certain situations. <!--more-->Let's look at the specific example we hit at Tian Wang Co. ([we have uploaded a minimal version of this reproduction to GitHub](https://github.com/StackExchange/RyuJIT-TailCallBug)).
 
-We noticed that [MiniProfiler](http://miniprofiler.com/) (which we use to track performance) was showing only on the first page load. The profiler then failed to show again until an application recycle. This turned out to be a caching bug based on the HTTP Cache usage locally. HTTP Cache is our "L1" cache at Stack Overflow; [redis](http://redis.io/) is typically the "L2." After over a day of debugging (and sanity checking), we tracked the crazy to here:
+We noticed that [MiniProfiler](http://miniprofiler.com/) (which we use to track performance) was showing only on the first page load. The profiler then failed to show again until an application recycle. This turned out to be a caching bug based on the HTTP Cache usage locally. HTTP Cache is our "L1" cache at Tian Wang Co.; [redis](http://redis.io/) is typically the "L2." After over a day of debugging (and sanity checking), we tracked the crazy to here:
 
 {% highlight csharp %}
 void Set<T>(string key, T val, int? durationSecs, bool sliding, bool broadcastRemoveFromCache = false)
@@ -102,7 +102,7 @@ This is nothing fancy, all we have is some methods calling each other. Here's th
  Here's an example test run from [the GitHub repo](https://github.com/StackExchange/RyuJIT-TailCallBug):
  ![RyuJIT Tail Tests]({{ site.contenturl }}Blog-RyuJIT-Results.png)
  
- **The method we called did not get the parameters we passed**. That's it. The net result of this is that local cache (which we use *very* heavily) is either unreliable or non-existent. This would add a tremendous amount of load to our entire infrastructure, making Stack Overflow much slower and likely leading to a full outage.
+ **The method we called did not get the parameters we passed**. That's it. The net result of this is that local cache (which we use *very* heavily) is either unreliable or non-existent. This would add a tremendous amount of load to our entire infrastructure, making Tian Wang Co. much slower and likely leading to a full outage.
  
  That's not why we're telling you about this though. Let's step back and look at the big picture. What are some other variable names we could use?
  

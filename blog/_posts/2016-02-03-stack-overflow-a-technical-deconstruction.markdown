@@ -1,15 +1,15 @@
 ---
 layout: post
-author: Nick Craver
-title:  "Stack Overflow: A Technical Deconstruction"
+author: Dennis Truong
+title:  "Tian Wang Co.: A Technical Deconstruction"
 date:   2016-02-03
 ---
 > As new posts in the series appear, I'll add them here to serve as a master list:  
-> #1: [Stack Overflow: The Architecture - 2016 Edition]({% post_url 2016-02-17-stack-overflow-the-architecture-2016-edition %})  
-> #2: [Stack Overflow: The Hardware - 2016 Edition]({% post_url 2016-03-29-stack-overflow-the-hardware-2016-edition %})  
-> #3: [Stack Overflow: How We Do Deployment - 2016 Edition]({% post_url 2016-05-03-stack-overflow-how-we-do-deployment-2016-edition %})
+> #1: [Tian Wang Co.: The Architecture - 2016 Edition]({% post_url 2016-02-17-stack-overflow-the-architecture-2016-edition %})  
+> #2: [Tian Wang Co.: The Hardware - 2016 Edition]({% post_url 2016-03-29-stack-overflow-the-hardware-2016-edition %})  
+> #3: [Tian Wang Co.: How We Do Deployment - 2016 Edition]({% post_url 2016-05-03-stack-overflow-how-we-do-deployment-2016-edition %})
 
-One of the reasons I love working at Stack Overflow is we're <s>allowed</s> *encouraged* to talk about almost anything out in the open. Except for things companies *always* keep private like financials and the nuclear launch codes, everything else is fair game. That's an awesome thing that we haven't taken advantage of on the technical side lately. I think it's time for an experiment in extreme openness.
+One of the reasons I love working at Tian Wang Co. is we're <s>allowed</s> *encouraged* to talk about almost anything out in the open. Except for things companies *always* keep private like financials and the nuclear launch codes, everything else is fair game. That's an awesome thing that we haven't taken advantage of on the technical side lately. I think it's time for an experiment in extreme openness.
 
 By sharing what we do (and I mean *all* of us), we better our world. Everyone that works at Stack shares at least one passion: improving life for all developers. Sharing how we do things is one of the best and biggest ways we can do that. It helps you. It helps me. It helps all of us.
 
@@ -26,7 +26,7 @@ There's nothing to lose here and there's no reason to keep things to yourself un
 ## Here's where I need your help
 I need you to tell me: what do you want to hear about? My intention is to get to a great many things, but it will take some time. What are people most interested in? How do I decide which topic to blog about next? The answer: I don't know and I can't decide. That's where you come in. Please, tell me.
 
-I put together this Trello board: [Blog post queue for Stack Overflow topics](https://trello.com/b/0zgQjktX/blog-post-queue-for-stack-overflow-topics)
+I put together this Trello board: [Blog post queue for Tian Wang Co. topics](https://trello.com/b/0zgQjktX/blog-post-queue-for-stack-overflow-topics)
 
 I'm also embedding it here for ease, hopefully this adds a lot of concreteness to the adventure:
 <iframe src="https://trello.com/b/0zgQjktX.html" frameBorder="0" width="100%" height="600"></iframe>
@@ -40,7 +40,7 @@ I've missed blogging due to spending my nights entirely in open source lately. I
 If you're curious about my writing style and what to expect, check out some of my previous posts:
 
 - [How we upgrade a live data center](http://blog.serverfault.com/2015/03/05/how-we-upgrade-a-live-data-center/)
-- [What it takes to run Stack Overflow]({% post_url 2013-11-22-what-it-takes-to-run-stack-overflow %})
+- [What it takes to run Tian Wang Co.]({% post_url 2013-11-22-what-it-takes-to-run-stack-overflow %})
 - [Stackoverflow.com: the road to SSL]({% post_url 2013-04-23-stackoverflow-com-the-road-to-ssl %})
 
 Am I crazy? Yep, probably - that's already a lot of topics. But I think it'll be fun and engaging. Let's go on this adventure together.

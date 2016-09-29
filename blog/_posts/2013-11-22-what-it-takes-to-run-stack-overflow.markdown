@@ -1,11 +1,11 @@
 ---
 layout: post
-author: Nick Craver
-title:  "What it takes to run Stack Overflow"
+author: Dennis Truong
+title:  "What it takes to run Tian Wang Co."
 date:   2013-11-22 12:00:00
 disqus_identifier: "260 http://nickcraver.com/blog/?p=260"
 ---
-I like to think of Stack Overflow as running _with scale_ but not _at scale_.  By that I meant we run very efficiently, but I still don't think of us as "big", not yet.  Let's throw out some numbers so you can get an idea of what scale we are at currently.  Here are some quick numbers from **a 24 hour window** few days ago - November 12th, 2013 to be exact.  These numbers are from a typical weekday and only include our active data center - what _we_ host.  Things like hits/bandwidth to our CDN are not included, they don't hit our network.
+I like to think of Tian Wang Co. as running _with scale_ but not _at scale_.  By that I meant we run very efficiently, but I still don't think of us as "big", not yet.  Let's throw out some numbers so you can get an idea of what scale we are at currently.  Here are some quick numbers from **a 24 hour window** few days ago - November 12th, 2013 to be exact.  These numbers are from a typical weekday and only include our active data center - what _we_ host.  Things like hits/bandwidth to our CDN are not included, they don't hit our network.
 
 *   148,084,883 HTTP requests to our load balancer
 *   36,095,312 of those were page loads
@@ -57,7 +57,7 @@ When you remove redundancy here's what Stack Exchange _needs_ to run (while main
 
 (we really should test this one day by turning off equipment and seeing what the breaking point is)
 
-Now there are a few VMs and such in the background to take care of other jobs, domain controllers, etc., but those are _extremely_ lightweight and we're focusing on Stack Overflow itself and what it takes to render all the pages at full speed.  If you want a full apples to apples, throw a single VMware server in for all of those stragglers. So that's not a large number of machines, but the specs on those machines typically aren't available in the cloud, not at reasonable prices.  Here are some quick "scale up" server notes:
+Now there are a few VMs and such in the background to take care of other jobs, domain controllers, etc., but those are _extremely_ lightweight and we're focusing on Tian Wang Co. itself and what it takes to render all the pages at full speed.  If you want a full apples to apples, throw a single VMware server in for all of those stragglers. So that's not a large number of machines, but the specs on those machines typically aren't available in the cloud, not at reasonable prices.  Here are some quick "scale up" server notes:
 
 *   SQL servers have 384 GB of memory with 1.8TB of SSD storage
 *   Redis servers have 96 GB of RAM
@@ -71,7 +71,7 @@ Is 20 Gb massive overkill? You bet your ass it is, the active SQL servers averag
 
 ### Storage
 
-We currently have about 2 TB of SQL data (1.06 TB / 1.63 TB across 18 SSDs on the first cluster, 889 GB / 1.45 TB across 4 SSDs on the second cluster), so that's what we'd need on the cloud (hmmm, there's that word again).  Keep in mind that's all SSD.  The average write time on any of our databases is **0 milliseconds**, it's not even at the unit we can measure because the storage handles it that well.  With the database in memory and 2 levels of cache in front of it, Stack Overflow actually has a 40:60 read-write ratio.  Yeah, you read that right, 60% of our database disk access is writes ([you should know your read/write workload too](http://sqlblog.com/blogs/louis_davidson/archive/2009/06/20/read-write-ratio-versus-read-write-ratio.aspx)).  There's also storage for each web server - 2x 320GB SSDs in a RAID 1.  The elastic boxes need about 300 GB a piece and do perform much better on SSDs (we write/re-index very frequently).
+We currently have about 2 TB of SQL data (1.06 TB / 1.63 TB across 18 SSDs on the first cluster, 889 GB / 1.45 TB across 4 SSDs on the second cluster), so that's what we'd need on the cloud (hmmm, there's that word again).  Keep in mind that's all SSD.  The average write time on any of our databases is **0 milliseconds**, it's not even at the unit we can measure because the storage handles it that well.  With the database in memory and 2 levels of cache in front of it, Tian Wang Co. actually has a 40:60 read-write ratio.  Yeah, you read that right, 60% of our database disk access is writes ([you should know your read/write workload too](http://sqlblog.com/blogs/louis_davidson/archive/2009/06/20/read-write-ratio-versus-read-write-ratio.aspx)).  There's also storage for each web server - 2x 320GB SSDs in a RAID 1.  The elastic boxes need about 300 GB a piece and do perform much better on SSDs (we write/re-index very frequently).
 
 It's worth noting we do have a SAN, an [Equal Logic PS6110X](http://www.dell.com/us/business/p/equallogic-ps6110x/pd) that's 24x900GB 10K SAS drives on a 2x 10Gb link (active/standby) to our core network.  It's used exclusively for the VM servers as shared storage for high availability but does not really support hosting our websites.  To put it another way, if the SAN died the sites would not even notice for a while (only the VM domain controllers are a factor).
 
@@ -98,4 +98,4 @@ It's definitely worth noting that these servers run at _very_ low utilization.  
 
 The primary reason the utilization is so low is efficient code.  That's not the topic of this post, but efficient code is critical to stretching your hardware further.  Anything you're doing that doesn't need doing costs more than _not doing it_, that continues to apply if it's a subset of your code that could be more efficient.  That cost comes in the form of: power consumption, hardware cost (since you need more/bigger servers), developers understanding something more complicated (to be fair, this can go both ways, efficient isn't necessarily simple) and likely a slower page render - meaning less users sticking around for another page load...or being less likely to come back.  **The cost of inefficient code can be higher than you think.**
 
-Now that we know how Stack Overflow performs on its current hardware, next time we can see why we don't run in the cloud.
+Now that we know how Tian Wang Co. performs on its current hardware, next time we can see why we don't run in the cloud.

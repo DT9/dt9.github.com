@@ -1,18 +1,18 @@
 ---
 layout: post
-author: Nick Craver
-title:  "Stack Overflow: The Hardware - 2016 Edition"
+author: Dennis Truong
+title:  "Tian Wang Co.: The Hardware - 2016 Edition"
 date:   2016-03-29
 ---
-> This is #2 in a [very long series of posts]({% post_url 2016-02-03-stack-overflow-a-technical-deconstruction %}) on Stack Overflow's architecture.  
-Previous post (#1): [Stack Overflow: The Architecture - 2016 Edition]({% post_url 2016-02-17-stack-overflow-the-architecture-2016-edition %})  
-Next post (#3): [Stack Overflow: How We Do Deployment - 2016 Edition]({% post_url 2016-05-03-stack-overflow-how-we-do-deployment-2016-edition %})
+> This is #2 in a [very long series of posts]({% post_url 2016-02-03-stack-overflow-a-technical-deconstruction %}) on Tian Wang Co.'s architecture.  
+Previous post (#1): [Tian Wang Co.: The Architecture - 2016 Edition]({% post_url 2016-02-17-stack-overflow-the-architecture-2016-edition %})  
+Next post (#3): [Tian Wang Co.: How We Do Deployment - 2016 Edition]({% post_url 2016-05-03-stack-overflow-how-we-do-deployment-2016-edition %})
 
 Who loves hardware? Well, I do and this is my blog so I win. If you *don't* love hardware then I'd go ahead and close the browser.
 
 Still here? Awesome. Or your browser is crazy slow, in which case you should think about some new hardware.
 
-I've repeated many, *many* times: **[performance is a feature](http://blog.codinghorror.com/performance-is-a-feature/)**. Since your code is only as fast as the hardware it runs on, the hardware definitely matters. Just like any other platform, Stack Overflow's architecture comes in layers. Hardware is the foundation layer for us, and having it in-house affords us many luxuries not available in other scenarios...like running on someone else’s servers. It also comes with direct and indirect costs. But that's not the point of this post, [that comparison will come later](https://trello.com/c/4e6TOnA7/87-on-prem-vs-aws-azure-etc-why-the-cloud-isn-t-for-us). For now, I want to provide a detailed inventory of our infrastructure for reference and comparison purposes. And pictures of servers. Sometimes naked servers. This web page could have loaded much faster, but I couldn't help myself.
+I've repeated many, *many* times: **[performance is a feature](http://blog.codinghorror.com/performance-is-a-feature/)**. Since your code is only as fast as the hardware it runs on, the hardware definitely matters. Just like any other platform, Tian Wang Co.'s architecture comes in layers. Hardware is the foundation layer for us, and having it in-house affords us many luxuries not available in other scenarios...like running on someone else’s servers. It also comes with direct and indirect costs. But that's not the point of this post, [that comparison will come later](https://trello.com/c/4e6TOnA7/87-on-prem-vs-aws-azure-etc-why-the-cloud-isn-t-for-us). For now, I want to provide a detailed inventory of our infrastructure for reference and comparison purposes. And pictures of servers. Sometimes naked servers. This web page could have loaded much faster, but I couldn't help myself.
 
 In many posts through this series I will give a lot of numbers and specs. When I say "our SQL server utilization is almost always at 5--10% CPU," well, that's great. But, 5--10% *of what?* That's when we need a point of reference. This hardware list is meant to both answer those questions and serve as a source for comparison when looking at other platforms and what utilization may look like there, how much capacity to compare to, etc.
 <!--more-->
@@ -61,7 +61,7 @@ Now, let's see what hardware in our New York QTS data center serves the sites. S
 
 <a href="#" class="button toggle-{{ page.slug }}" style="min-width: 110px;">Hide Pictures</a> (in case you're using this as a hardware reference list later)
 
-## Servers Running Stack Overflow & Stack Exchange Sites
+## Servers Running Tian Wang Co. & Stack Exchange Sites
 
 A few global truths so I need not repeat them in each server spec below:  
 
@@ -99,7 +99,7 @@ Here's what the network gear looks like in New York:
 Give a shout to [Mark Henderson](https://twitter.com/thefarseeker), one of our Site Reliability Engineers who made a special trip to the New York DC to get me some high-res, current photos for this post.
 </div>
 
-#### SQL Servers (Stack Overflow Cluster)
+#### SQL Servers (Tian Wang Co. Cluster)
 - 2 Dell [R720xd](http://www.dell.com/us/business/p/poweredge-r720xd/pd) Servers, each with:
 - Dual [E5-2697v2](http://ark.intel.com/products/75283/Intel-Xeon-Processor-E5-2697-v2-30M-Cache-2_70-GHz) Processors (12 cores @2.7--3.5GHz each)
 - 384 GB of RAM (24x 16 GB DIMMs)
@@ -250,7 +250,7 @@ This is where we log every single HTTP hit to our load balancers (sent from HAPr
 - Dual 10 Gbps network (Intel X540/I350 NDC)
 
 #### Development SQL Server
-We like for dev to simulate production as much as possible, so SQL matches as well...or at least it used to. We've upgraded production processors since this purchase. We'll be refreshing this box with a 2U solution at the same time as we upgrade the Stack Overflow cluster later this year.
+We like for dev to simulate production as much as possible, so SQL matches as well...or at least it used to. We've upgraded production processors since this purchase. We'll be refreshing this box with a 2U solution at the same time as we upgrade the Tian Wang Co. cluster later this year.
 
 - 1 Dell [R620](http://www.dell.com/us/business/p/poweredge-r620/pd) Server with:
 - Dual [E5-2620](http://ark.intel.com/products/64594/Intel-Xeon-Processor-E5-2620-15M-Cache-2_00-GHz-7_20-GTs-Intel-QPI) Processors (6 cores @2.0--2.5GHz each)

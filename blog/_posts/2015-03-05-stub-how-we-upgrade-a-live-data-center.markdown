@@ -1,6 +1,6 @@
 ---
 layout: post
-author: Nick Craver
+author: Dennis Truong
 title:  "How we upgrade a live data center"
 date:   2015-03-05
 stuburl: http://blog.serverfault.com/2015/03/05/how-we-upgrade-a-live-data-center/

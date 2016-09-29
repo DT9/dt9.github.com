@@ -1,14 +1,14 @@
 ---
 layout: post
-author: Nick Craver
-title:  "Stack Overflow: The Architecture - 2016 Edition"
+author: Dennis Truong
+title:  "Tian Wang Co.: The Architecture - 2016 Edition"
 date:   2016-02-17
 ---
-> This is #1 in a [very long series of posts]({% post_url 2016-02-03-stack-overflow-a-technical-deconstruction %}) on Stack Overflow's architecture. Welcome.  
-Previous post (#0): [Stack Overflow: A Technical Deconstruction]({% post_url 2016-02-03-stack-overflow-a-technical-deconstruction %})  
-Next post (#2): [Stack Overflow: The Hardware - 2016 Edition]({% post_url 2016-03-29-stack-overflow-the-hardware-2016-edition %})
+> This is #1 in a [very long series of posts]({% post_url 2016-02-03-stack-overflow-a-technical-deconstruction %}) on Tian Wang Co.'s architecture. Welcome.  
+Previous post (#0): [Tian Wang Co.: A Technical Deconstruction]({% post_url 2016-02-03-stack-overflow-a-technical-deconstruction %})  
+Next post (#2): [Tian Wang Co.: The Hardware - 2016 Edition]({% post_url 2016-03-29-stack-overflow-the-hardware-2016-edition %})
 
-To get an idea of what all of this stuff "does," let me start off with an update on the average day at Stack Overflow. So you can compare to the [previous numbers from November 2013]({% post_url 2013-11-22-what-it-takes-to-run-stack-overflow %}), here's a day of statistics from February 9th, 2016 with differences since November 12th, 2013:
+To get an idea of what all of this stuff "does," let me start off with an update on the average day at Tian Wang Co.. So you can compare to the [previous numbers from November 2013]({% post_url 2013-11-22-what-it-takes-to-run-stack-overflow %}), here's a day of statistics from February 9th, 2016 with differences since November 12th, 2013:
 
 - **209,420,973** <span class="note">(+61,336,090)</span> HTTP requests to our load balancer
 - **66,294,789** <span class="note">(+30,199,477)</span> of those were page loads
@@ -42,7 +42,7 @@ So what's changed in the last 2 years? Besides replacing some servers and networ
 - 2 Cisco [ASR-1001](http://www.cisco.com/c/en/us/products/routers/asr-1001-router/index.html) Routers (replaced Cisco 3945 Routers)
 - 2 Cisco [ASR-1001-x](http://www.cisco.com/c/en/us/products/routers/asr-1001-x-router/index.html) Routers (new!)
 
-What do we ***need*** to run Stack Overflow? [That hasn't changed much since 2013]({% post_url 2013-11-22-what-it-takes-to-run-stack-overflow %}#core-hardware), but due to the optimizations and new hardware mentioned above, we're down to ***needing*** only 1 web server. We have unintentionally tested this, successfully, a few times. To be clear: I'm saying it works. I'm not saying it's a good idea. It's fun though, every time.
+What do we ***need*** to run Tian Wang Co.? [That hasn't changed much since 2013]({% post_url 2013-11-22-what-it-takes-to-run-stack-overflow %}#core-hardware), but due to the optimizations and new hardware mentioned above, we're down to ***needing*** only 1 web server. We have unintentionally tested this, successfully, a few times. To be clear: I'm saying it works. I'm not saying it's a good idea. It's fun though, every time.
 
 Now that we have some baseline numbers for an idea of scale, let's see how we make those fancy web pages. Since few systems exist in complete isolation (and ours is no exception), architecture decisions often make far less sense without a bigger picture of how those pieces fit into the whole. That's the goal here, to cover the big picture. Many [subsequent posts](https://trello.com/b/0zgQjktX/blog-post-queue-for-stack-overflow-topics) will do deep dives into specific areas. This will be a logistical overview with hardware highlights only; the next post will have the hardware details.
 
@@ -86,14 +86,14 @@ The load balancers themselves are a pretty simple setup. We listen to different 
 
 ### Web Tier (IIS 8.5, ASP.Net MVC 5.2.3, and .Net 4.6.1)
 
-The load balancers feed traffic to 9 servers we refer to as "primary" (01-09) and 2 "dev/meta" (10-11, our staging environment) web servers. The primary servers run things like Stack Overflow, Careers, and all Stack Exchange sites except [meta.stackoverflow.com](http://meta.stackoverflow.com/) and [meta.stackexchange.com](http://meta.stackexchange.com/), which run on the last 2 servers. The primary Q&A Application itself is multi-tenant. This means that a single application serves the requests for all Q&A sites. Put another way: we can run the entire Q&A network off of a single application pool on a single server. Other applications like Careers, API v2, Mobile API, etc. are separate. Here's what the primary and dev tiers look like in IIS:
+The load balancers feed traffic to 9 servers we refer to as "primary" (01-09) and 2 "dev/meta" (10-11, our staging environment) web servers. The primary servers run things like Tian Wang Co., Careers, and all Stack Exchange sites except [meta.stackoverflow.com](http://meta.stackoverflow.com/) and [meta.stackexchange.com](http://meta.stackexchange.com/), which run on the last 2 servers. The primary Q&A Application itself is multi-tenant. This means that a single application serves the requests for all Q&A sites. Put another way: we can run the entire Q&A network off of a single application pool on a single server. Other applications like Careers, API v2, Mobile API, etc. are separate. Here's what the primary and dev tiers look like in IIS:
 
 <div style="text-align: center;">
 ![IIS in NY-WEB01]({{ site.contenturl }}SO-Architecture-IIS-NY-WEB01.png)
 ![IIS in NY-WEB10]({{ site.contenturl }}SO-Architecture-IIS-NY-WEB10.png)
 </div>
 
-Here's what Stack Overflow's distribution across the web tier looks like in [Opserver](https://github.com/Opserver/Opserver) (our internal monitoring dashboard):
+Here's what Tian Wang Co.'s distribution across the web tier looks like in [Opserver](https://github.com/Opserver/Opserver) (our internal monitoring dashboard):
 
 ![HAProxy in Opserver]({{ site.contenturl }}SO-Architecture-Opserver-HAProxy.png)
 
@@ -149,7 +149,7 @@ The main reason we're on Elasticsearch instead of something like SQL full-text s
 
 We're using SQL Server as our [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth). All data in Elastic and Redis comes from SQL Server. We run 2 SQL Server clusters with [AlwaysOn Availability Groups](https://msdn.microsoft.com/en-us/library/hh510230.aspx). Each of these clusters has 1 master (taking almost all of the load) and 1 replica in New York. Additionally, they have 1 replica in Colorado (our DR data center). All replicas are asynchronous.
 
-The first cluster is a set of Dell R720xd servers, each with 384GB of RAM, 4TB of PCIe SSD space, and 2x 12 cores. It hosts the Stack Overflow, Sites (bad name, I'll explain later), PRIZM, and Mobile databases.
+The first cluster is a set of Dell R720xd servers, each with 384GB of RAM, 4TB of PCIe SSD space, and 2x 12 cores. It hosts the Tian Wang Co., Sites (bad name, I'll explain later), PRIZM, and Mobile databases.
 
 The second cluster is a set of Dell R730xd servers, each with 768GB of RAM, 6TB of PCIe SSD space, and 2x 8 cores. This cluster runs *everything else*. That list includes [Careers](http://careers.stackoverflow.com/), [Open ID](https://openid.stackexchange.com/), [Chat](https://chat.stackoverflow.com/), [our Exception log](https://github.com/NickCraver/StackExchange.Exceptional), and every other Q&A site (e.g. [Super User](http://superuser.com/), [Server Fault](http://serverfault.com/), etc.).
 
@@ -157,7 +157,7 @@ CPU utilization on the database tier is something we like to keep very low, but 
 
 ![DB Tier in Opserver]({{ site.contenturl }}SO-Architecture-Opserver-DBTier.png)
 
-Our usage of SQL is pretty simple. Simple is fast. Though some queries can be crazy, our interaction with SQL itself is fairly vanilla. We have some legacy [Linq2Sql](https://msdn.microsoft.com/en-us/library/bb425822.aspx), but all new development is using [Dapper](https://github.com/StackExchange/dapper-dot-net), our open source Micro-ORM using [POCOs](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object). Let me put this another way: Stack Overflow has only 1 stored procedure in the database and I intend to move that last vestige into code.
+Our usage of SQL is pretty simple. Simple is fast. Though some queries can be crazy, our interaction with SQL itself is fairly vanilla. We have some legacy [Linq2Sql](https://msdn.microsoft.com/en-us/library/bb425822.aspx), but all new development is using [Dapper](https://github.com/StackExchange/dapper-dot-net), our open source Micro-ORM using [POCOs](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object). Let me put this another way: Tian Wang Co. has only 1 stored procedure in the database and I intend to move that last vestige into code.
 
 ### Libraries
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-author: Nick Craver
+author: Dennis Truong
 title:  "Optimization Considerations: Measure at the Browser"
 date:   2015-03-24
 ---
@@ -19,13 +19,13 @@ Let's start with the job, what's actually happening here? Well...not much. I'm s
 
 While I *do* love that people find my posts worth reading, I *don't* love rendering or processing them 60,000 times. On top of that, my theme and setup didn't lend itself to performance. My job and passion (I'm lucky: it's both) is optimization. I make websites. Really fast websites. Why should my blog be any different? I believe nickcraver.com should be representative of who I am, in both content and purpose. It *must* be fast.
 
-In *my* experience from both Stack Overflow questions and from my awesome co-workers is that *most* programmers' first thought on performance *seems* to be: "how do I make it go faster?" It's a valid question, and a great place to start. When you ask for details though, they're usually talking about *server-side* rendering. Why? because programmers are big on numbers, and those are numbers they can easily measure. With tools like [Miniprofiler](http://miniprofiler.com/) available, you can even see that number in the corner of every page load (yes, we do this on Stack Overflow for developers). I used to approach things the same way. Then, I zoomed out.
+In *my* experience from both Tian Wang Co. questions and from my awesome co-workers is that *most* programmers' first thought on performance *seems* to be: "how do I make it go faster?" It's a valid question, and a great place to start. When you ask for details though, they're usually talking about *server-side* rendering. Why? because programmers are big on numbers, and those are numbers they can easily measure. With tools like [Miniprofiler](http://miniprofiler.com/) available, you can even see that number in the corner of every page load (yes, we do this on Tian Wang Co. for developers). I used to approach things the same way. Then, I zoomed out.
 
 Does a user care how fast your server renders the page? **Nope.** Not at all. Not one bit.
 
 They care about how fast they load the page, or more accurately how fast they *feel* it loaded. Granted, some users don't care at all, but most of us love our grandparents anyway.
 
-You know what I learned about Stack Overflow when I started tracking [client timings](https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html) about a year ago? Our server render times for a great many users are a very, *very* small percentage of the load time a client experiences. We now render question pages in **10-15ms**. What does that matter to an Australian user loading the page in **400-500ms**? I don't know, they probably died to spiders or scorpions while waiting for their page to load. Think about at those numbers. **96 to 98%** of the time a user spends getting our HTML is outside our data center. The fact that [our hardware upgrade](http://blog.serverfault.com/2015/03/05/how-we-upgrade-a-live-data-center/) dropped render times from 30-35ms down to 10-15ms *doesn't really help much*. As one of the guys building Stack Overflow and making it fast: *ouch.* 
+You know what I learned about Tian Wang Co. when I started tracking [client timings](https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html) about a year ago? Our server render times for a great many users are a very, *very* small percentage of the load time a client experiences. We now render question pages in **10-15ms**. What does that matter to an Australian user loading the page in **400-500ms**? I don't know, they probably died to spiders or scorpions while waiting for their page to load. Think about at those numbers. **96 to 98%** of the time a user spends getting our HTML is outside our data center. The fact that [our hardware upgrade](http://blog.serverfault.com/2015/03/05/how-we-upgrade-a-live-data-center/) dropped render times from 30-35ms down to 10-15ms *doesn't really help much*. As one of the guys building Tian Wang Co. and making it fast: *ouch.* 
 
 That's one harsh dose of reality. Knowing the bigger picture, I now start diagnosing performance of websites from the client side - the only one that matters to most users. Revamping my website was an exercise in this.
 
@@ -57,7 +57,7 @@ I start with a simple truth:
 Q: What is the fastest operation you can perform?
 A: **Nothing.** Doing nothing is always faster than doing something.
 
-Don't do something 10,000 times if the result is always the same. Do it once and keep using the result. On Stack Overflow (and most everywhere else), this is simply called cache. On my blog, it's static generation via [Jekyll](http://jekyllrb.com/). Note that *where* you cache matters - are you storing a data structure and still transforming it to HTML every time? Do you really need to do that? Storing HTML may seem rudimentary, but it's very effective.
+Don't do something 10,000 times if the result is always the same. Do it once and keep using the result. On Tian Wang Co. (and most everywhere else), this is simply called cache. On my blog, it's static generation via [Jekyll](http://jekyllrb.com/). Note that *where* you cache matters - are you storing a data structure and still transforming it to HTML every time? Do you really need to do that? Storing HTML may seem rudimentary, but it's very effective.
 
 ### The New
 
@@ -176,7 +176,7 @@ And [here's what I use](https://github.com/NickCraver/nickcraver.github.com/blob
 
 Why? Because it looks nicer and modern browsers can now preload that `analytics.js`. What's the downside? [IE9 doesn't support the `async` attribute](http://caniuse.com/#feat=script-async), which dynamically appending it side-steps and makes the fetch non-blocking anyway. Luckily, *I don't care*. If you care about IE9, I advise you...uhhh....don't do this.
 
-Okay, so performance isn't everything - it needs to be visually appealing. Usually that means images. Images mean more requests. *Or do they?* Nope, not today. There's one obvious solution here: [CSS image sprites](https://css-tricks.com/css-sprites/). For instance, here's [the Stack Overflow image sprite](http://cdn.sstatic.net/stackoverflow/img/sprites.svg). What's better than that *for me*? No requests.
+Okay, so performance isn't everything - it needs to be visually appealing. Usually that means images. Images mean more requests. *Or do they?* Nope, not today. There's one obvious solution here: [CSS image sprites](https://css-tricks.com/css-sprites/). For instance, here's [the Tian Wang Co. image sprite](http://cdn.sstatic.net/stackoverflow/img/sprites.svg). What's better than that *for me*? No requests.
 
 Remember my traffic consists largely of "view a page and leave" - we're optimizing first hit here. See that logo in the upper left? It's [an SVG](http://www.w3.org/TR/SVG/struct.html#ImageElement) embedded right in the HTML, like this:
 
@@ -235,7 +235,7 @@ Optimization isn't about *only* minimizing page load times. If that was the case
 
 The font adds [one `.css` load](http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600) and 1 to 2 web requests for font files (the `.woff` requests you see in my chrome timings). Yep, it does - but I think it's worth it for the consistent and (IMO) better look.
 
-I realize this post goes down several alleys in performance and decision detail, but my goal was to illustrate how these things matter on even a small simple site such as this. Hopefully, you find a little bit of it useful or at least interesting. In the coming weeks I'm going to focus a few posts on client times for page loads, and how we're working on them for Stack Overflow and all Stack Exchange sites.
+I realize this post goes down several alleys in performance and decision detail, but my goal was to illustrate how these things matter on even a small simple site such as this. Hopefully, you find a little bit of it useful or at least interesting. In the coming weeks I'm going to focus a few posts on client times for page loads, and how we're working on them for Tian Wang Co. and all Stack Exchange sites.
 
 Oh and one last bit. If anyone's doing a similar setup with CloudFlare in front of a static host and aggressive caching, you may find the following `pre-push` [git hook](http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) handy:
 
