@@ -4,7 +4,7 @@ author: Dennis Truong
 title:  "Desktop Build 2016"
 date:   2016-01-04
 ---
-<html>
+Desktop
 <section>
   <div class="page-content">
     <div class="wrapper">
@@ -154,4 +154,3 @@ date:   2016-01-04
     </div>
   </div>
 </section>
-</html>
