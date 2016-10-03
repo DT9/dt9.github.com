@@ -2,7 +2,7 @@
 title: Software Imagineering
 email: dionysius.truong@ualberta.ca
 description: > #
-url: "http://cver.me"
+url: "http://dt9.github.io"
 twitter_username: denweny
 github_username:  dt9
 stackoverflow_link: users/13249/denweny
@@ -16,9 +16,9 @@ kramdown:
   #parse_span_html: true
 excerpt_separator: <!--more-->
 
-disqus: denweny
+disqus: dt9-github-io
 
-google_analytics_ua: UA-28897355-1
+google_analytics_ua: UA-85114211-1
 
 #paginate: 5
 
