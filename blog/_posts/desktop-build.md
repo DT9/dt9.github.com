@@ -1,7 +1,6 @@
 ---
-layout: full
+layout: post
 section: desktop
-permalink: /desktop-build/
 ---
     <section>
       <div class="page-content">
