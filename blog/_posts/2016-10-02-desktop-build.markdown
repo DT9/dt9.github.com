@@ -2,7 +2,7 @@
 layout: post
 author: Dennis Truong
 title:  "Desktop Build 2016"
-date:   2016-01-04 12:00:00
+date:   2016-01-04
 ---
     <section>
       <div class="page-content">
