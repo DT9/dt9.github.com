@@ -4,8 +4,6 @@ author: Dennis Truong
 title:  "Desktop Build 2016"
 date:   2016-01-04
 ---
-<section>
-  <div class="page-content">
     <div class="wrapper">
       <h1>Developer Desktop Build - 2016</h1>
       <p>One of the things we're big on at UofA is hardware - we love it. More importantly, we love <i>not waiting on it</i>. 
@@ -151,5 +149,3 @@ date:   2016-01-04
         </table>
       </div>
     </div>
-  </div>
-</section>
