@@ -5,7 +5,7 @@ description: > #
 url: "http://dt9.github.io"
 twitter_username: denweny
 github_username:  dt9
-stackoverflow_link: users/13249/denweny
+stackoverflow_link: users/3736384/denweny
 
 permalink: /:categories/:year/:month/:day/:title/
 contenturl: "/blog/content/"
