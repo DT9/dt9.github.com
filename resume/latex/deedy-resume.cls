@@ -16,7 +16,9 @@
 \usepackage[absolute]{textpos}
 \usepackage[UKenglish]{babel}
 \usepackage[UKenglish]{isodate}
+\usepackage{enumitem}
 \usepackage{fontspec,xltxtra,xunicode}
+
 
 % Cite publications
 \usepackage{cite}
@@ -86,5 +88,8 @@ Last Updated on
 
 % Bullet Lists with fewer gaps command
 \newenvironment{tightemize}{\vspace{-\topsep}\begin{itemize}\itemsep1pt \parskip0pt \parsep0pt}{\end{itemize}\vspace{-\topsep}}
+
+% Bullet Lists with fewer gaps command
+\newenvironment{ctightemize}{\vspace{-\topsep}\begin{itemize}[leftmargin=*]\itemsep0pt \parskip0pt \parsep0pt}{\end{itemize}\vspace{-\topsep}}
 
 
