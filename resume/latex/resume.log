@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.5.22)  13 NOV 2017 15:50
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.5.22)  17 FEB 2018 00:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1069,16 +1069,26 @@ LaTeX Font Warning: Font shape `EU1/HeitiSCMedium(0)/m/sc' undefined
 .................................................
 . fontspec info: "no-scripts"
 . 
+. Font Heiti SC Medium does not contain any OpenType `Script' information.
+.................................................
+.................................................
+. fontspec info: "no-scripts"
+. 
 . Font Heiti TC Medium does not contain any OpenType `Script' information.
 .................................................
 
 LaTeX Font Warning: Font shape `EU1/HeitiTCMedium(0)/m/sc' undefined
-(Font)              using `EU1/HeitiTCMedium(0)/m/n' instead on input line 29.
+(Font)              using `EU1/HeitiTCMedium(0)/m/n' instead on input line 30.
 
 .................................................
 . fontspec info: "no-scripts"
 . 
 . Font Heiti TC Medium does not contain any OpenType `Script' information.
+.................................................
+.................................................
+. fontspec info: "no-scripts"
+. 
+. Font Helvetica Light does not contain any OpenType `Script' information.
 .................................................
 .................................................
 . fontspec info: "no-scripts"
@@ -1214,27 +1224,27 @@ t;!
 . 
 . Font Heiti SC Medium does not contain any OpenType `Script' information.
 .................................................
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 315.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 317.
 [1
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 315.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 317.
  (./resume.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 315.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 315.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 317.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 317.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 315.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 317.
  ) 
 Here is how much of TeX's memory you used:
  22920 strings out of 493591
  409543 string characters out of 6143546
- 443398 words of memory out of 5000000
+ 444398 words of memory out of 5000000
  26093 multiletter control sequences out of 15000+600000
  4416 words of font info for 67 fonts, out of 8000000 for 9000
  1347 hyphenation exceptions out of 8191
- 53i,11n,107p,10368b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,11n,107p,10368b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on resume.pdf (1 page).
