@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.5.22)  2 MAY 2018 16:44
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.5.22)  4 MAY 2018 18:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1165,6 +1165,16 @@ t;!
 . fontspec info: "no-scripts"
 . 
 . Font Helvetica Light does not contain any OpenType `Script' information.
+.................................................
+.................................................
+. fontspec info: "no-scripts"
+. 
+. Font Helvetica does not contain any OpenType `Script' information.
+.................................................
+.................................................
+. fontspec info: "no-scripts"
+. 
+. Font Heiti SC Medium does not contain any OpenType `Script' information.
 .................................................
 .................................................
 . fontspec info: "no-scripts"
